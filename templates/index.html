@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Heart disease Predictor</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+<div class="container">
+  <div class="heading">
+    <h1>Heart Disease Prediction using Machine Learning</h1>
+  </div>
+  <div class="login">
+  
+    <h3> Enter following values for checking risk of heart disease</h3>
+
+    <!-- Main Input For Receiving Query to our ML -->
+   <form action="predictResult" method="post">
+       {% csrf_token %}
+      <input type="float" name="age" placeholder="Enter your age" required />
+      <input type="number" name="ap_hi" placeholder="Enter Systolic blood pressure" required="required" />
+       <input type="number" name="ap_lo" placeholder="Enter Diastolic blood pressure" required="required" />
+   
+       <select name="cholesterol" id="cholesterol" placeholder="Cholesterol" required>
+           <option value="" disabled selected>Select Cholesterol</option>
+           <option value="1" id="cholesterolOpt" >Normal</option>
+           <option value="2" id="cholesterolOpt">Above Normal</option>
+           <option value="3" id="cholesterolOpt">Well above Normal</option>
+       </select>
+
+       <br>
+       <select name="glucose" id="glucose" placeholder="glucose">
+         <option value="" disabled selected style="background-color: rgba(128, 128, 128, 0.71);">Select Glucose level</option>
+         <option value="1" id="glucoseOpt" >Normal</option>
+         <option value="2" id="glucoseOpt">Above Normal</option>
+         <option value="3" id="glucoseOpt">Well above Normal</option>
+     </select>
+     <br>
+     <select name="activity" id="activity" placeholder="activity">
+       <option value="" disabled selected>Physical activity</option>
+       <option value="0" id="activityOpt" >In-active</option>
+       <option value="1" id="activityOpt">Active</option>
+   </select>
+     <br>
+     <input type="float" name="bmi" placeholder="Enter BMI:" required="required" />
+      <a href="https://www.calculator.net/bmi-calculator.html" target="_blank">BMI calculator</a><br>
+      
+     
+     
+     <button type="submit" class="btn" value="predict">Predict</button>
+   </form>
+   
+  <div class="message">
+    {% if result == 1 %}
+    <h1>You have risk of Heart Disease</h1>
+      
+    {% elif result == 0 %}
+      <h1>You are healthy!!</h1>
+        
+    {% endif %}
+   </div>
+  </div>
+
+  
+  <div class="ack" style="margin-left:-9px;">
+    <br>
+    <span>Team name: Bias_Variance_Dillema</span><br><br>
+    <span>Submitted to Professor Mehul Raval</span><br><br>
+
+    <div class="team_names" style="padding-bottom: 50px;">
+      <span>AU1940155- Shubham Patel</span>
+      <span>AU1940207- Keyur Nagar </span>
+      <span>AU1940110- Shrey Patel</span>
+      
+    </div>
+    <br>
+
+  </div>
+  
+</div>
+ 
+
+
+</body>
+</html>
